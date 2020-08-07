@@ -1,12 +1,15 @@
 class Microwave
-  def initialize(time)
-     if time.between?(60, 99)
-       time = time + 40
-     end
-     time_digits = time.digits
-      timer_digits =  time_digits + Array.new(4 - time_digits.length(), 0)
-      @timer = "#{timer_digits[3]}#{timer_digits[2]}:#{timer_digits[1]}#{timer_digits[0]}"
+
+  attr_reader :minutes, :seconds
+
+  def initialize(input)
+    minutes, seconds = input.divmod(input < 100 ? 60 : 100)
+    if seconds > 59
+      raise 'invalid time value'  
+    end
+    @timer = "%02d:%02d" % [minutes, seconds]
   end
+
   def timer
     @timer
   end
