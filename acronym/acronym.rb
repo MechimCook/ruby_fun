@@ -1,5 +1,5 @@
 module Acronym
-  def self.abbreviate(time)
-    time.split(/ |-/).map { |word| word[0,1] }.join.upcase
+  def self.abbreviate(sentence)
+    sentence.scan(/\b\w/).join.upcase
   end
 end
